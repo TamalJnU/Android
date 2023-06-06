@@ -137,10 +137,12 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", emp.getName());
+        values.put("gender", emp.getGender());
         values.put("email", emp.getEmail());
         values.put("address", emp.getAddress());
         values.put("salary", emp.getSalary());
         values.put("department", emp.getDepartment());
+        values.put("startdate", emp.getStartDate());
         int result = db.update("employee", values, "id = ?", new String[]{emp.getId() + ""});
         db.close();
         return result > 0;

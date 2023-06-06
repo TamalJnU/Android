@@ -70,6 +70,7 @@ public class ListEmployee extends AppCompatActivity {
                         intent.putExtra("address", user.get("address"));
                         intent.putExtra("salary", user.get("salary"));
                         intent.putExtra("department", user.get("department"));
+                        intent.putExtra("startdate", user.get("startdate"));
                         startActivity(intent);
                     }
                 });

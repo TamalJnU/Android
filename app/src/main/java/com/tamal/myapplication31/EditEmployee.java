@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -79,7 +80,7 @@ public class EditEmployee extends AppCompatActivity {
         System.out.println(gender);
         idUpdateEmp.setText(id);
         nameUpdateEmp.setText(name);
-        if(gender=="Male"){
+        if(gender.contains("Male")){
             genderUpdateEmp.check(R.id.empUpdateMale);
         }else{
             genderUpdateEmp.check(R.id.empUpdateFemale);
@@ -87,8 +88,43 @@ public class EditEmployee extends AppCompatActivity {
         emailUpdateEmp.setText(email);
         addressUpdateEmp.setText(address);
         salaryUpdateEmp.setText(salary);
-        departmentUpdateEmp.setSelected(Boolean.parseBoolean(department));
+//        Integer indexValue = MySpinner.getSelectedItemPosition();
+
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.departments, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        departmentUpdateEmp.setAdapter(adapter);
+
+        Integer pos;
+        if(department.contains("Technical")) {
+            pos = adapter.getPosition("Technical");
+            departmentUpdateEmp.setSelection(pos);
+        } else if (department.contains("Support")) {
+            pos = adapter.getPosition("Support");
+            departmentUpdateEmp.setSelection(pos);
+        } else if (department.contains("Research and Development")) {
+            pos = adapter.getPosition("Research and Development");
+            departmentUpdateEmp.setSelection(pos);
+        } else if (department.contains("Marketing")) {
+            pos = adapter.getPosition("Marketing");
+            departmentUpdateEmp.setSelection(pos);
+        } else if (department.contains("Support")) {
+            pos = adapter.getPosition("Support");
+            departmentUpdateEmp.setSelection(pos);
+        }else{
+            departmentUpdateEmp.setSelection(0);
+        }
+
+
+
+        System.out.println("Date----------------startdate--"+startdate);
+
         if(startdate != null) {
+            System.out.println("Date----------------startdate--"+startdate);
             startingDateUpdateEmp.setText(startdate);
         }
 
